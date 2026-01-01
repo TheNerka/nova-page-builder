@@ -21,7 +21,9 @@ class NovaPageBuilderServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
 
         // Load Routes
-        $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
+        if(config('nova-page-builder.register_routes')) {
+            $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
+        }
 
         // Register Page Builder resource
         Nova::resources([
